@@ -1,7 +1,9 @@
 :root {
-  --accent: #22f3a6;
+  --accent: #22f3a6; /* mint green */
+  --accent-light: #80ffe3; /* softer pastel mint for hover effects */
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.7);
+  --bg-gradient: linear-gradient(135deg, #064e4e 0%, #0a7c7c 100%);
 }
 
 /* ===== RESET ===== */
@@ -11,7 +13,9 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  }
   background: #064e4e;
   color: var(--text);
 }
@@ -95,19 +99,31 @@ html {
 /* ===== SECTIONS ===== */
 .section {
   min-height: calc(100vh - 120px);
-  padding: 8rem 6%; /* Increased top padding to ensure proper spacing */
+  padding: 10rem 10%;
 }
 
 /* ===== HERO ===== */
 .hero {
-  max-width: 1000px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  justify-content: center;
+  padding: 9em 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 /* Headings */
+.hero h1,
+.hero h2 {
+  font-family: "Poppins", "Inter", sans-serif;
+}
+
 .hero h1 {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 800;
@@ -121,17 +137,18 @@ html {
 
 .hero h2 {
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
   opacity: 0.9;
 }
 
 /* Description */
 .hero p {
-  max-width: 520px;
+  max-width: 600px;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--muted);
+  text-align: center;
 }
 
 /* Buttons */
@@ -198,5 +215,25 @@ html {
   .hero-buttons {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+/* ===== Floating GIF ===== */
+.hero-gif {
+  width: 300px;
+  height: auto;
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite;
+  margin-top: 3rem;
+  align-items: baseline;
+  justify-content: center;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
   }
 }

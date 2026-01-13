@@ -8,7 +8,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Hi, I’m <span>Sharmaine</span>
+        Hi, I’m <span>Sharmaine!</span>
       </motion.h1>
 
       <motion.h2
@@ -43,6 +43,16 @@ export default function Home() {
           Contact Me
         </a>
       </motion.div>
+
+      {/* Floating GIF on the right */}
+      <motion.img
+        src="https://media.tenor.com/4EhUju6UJtEAAAAi/grrr-rawr.gif"
+        alt="Hi sticker"
+        className="hero-gif"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+      />
     </section>
   );
 }

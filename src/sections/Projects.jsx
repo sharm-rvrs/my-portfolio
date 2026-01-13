@@ -5,12 +5,11 @@ export default function Projects() {
 
       <div className="projects-grid">
         <div className="project-card">
-          <h3>Portfolio Website</h3>
-          <p>Modern responsive portfolio built with React and Framer Motion.</p>
+          <h3>Treasure Juniors</h3>
+          <p>Lorem Ipsum</p>
           <div className="tech-stack">
-            <span>React</span>
-            <span>CSS</span>
-            <span>Framer Motion</span>
+            <span>C#</span>
+            <span>Unity 3D</span>
           </div>
         </div>
 
@@ -20,7 +19,7 @@ export default function Projects() {
           <div className="tech-stack">
             <span>React</span>
             <span>SQLite</span>
-            <span>Chart.js</span>
+            <span>Typescript</span>
           </div>
         </div>
       </div>

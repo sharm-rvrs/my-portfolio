@@ -10,7 +10,7 @@ export default function Navbar() {
         const targetId = link.getAttribute("href").substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-          const offset = targetElement.offsetTop - 80; // Adjust offset for navbar height
+          const offset = targetElement.offsetTop - 80;
           window.scrollTo({ top: offset, behavior: "smooth" });
         }
       });
@@ -35,10 +35,10 @@ export default function Navbar() {
 
         <nav className="nav-links">
           {[
-            { href: "#home", label: "Home" },
-            { href: "#projects", label: "Projects" },
-            { href: "#services", label: "Service" },
-            { href: "#about", label: "About" },
+            { href: "#home", label: "HOME" },
+            { href: "#projects", label: "PROJECTS" },
+            { href: "#services", label: "SERVICES" },
+            { href: "#about", label: "ABOUT" },
           ].map((link) => (
             <motion.a
               key={link.href}
