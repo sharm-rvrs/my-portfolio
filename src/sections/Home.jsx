@@ -24,8 +24,10 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        I build modern, responsive, and user-focused web applications with clean
-        code and smooth animations.
+        Passionate full-stack web developer with hands-on experience building
+        web applications using C#, React, TypeScript, and a variety of modern
+        libraries and frameworks. I focus on clean, efficient code and creating
+        responsive, user-friendly experiences.
       </motion.p>
 
       <motion.div

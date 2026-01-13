@@ -1,35 +1,28 @@
-import { motion } from "framer-motion";
-import ProjectCard from "../components/ProjectCard";
-
 export default function Projects() {
   return (
-    <section id="projects" className="section">
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        Projects
-      </motion.h2>
+    <section className="section" id="projects">
+      <h2>Projects</h2>
 
       <div className="projects-grid">
-        <ProjectCard
-          title="Personal Expense Tracker"
-          description="A full-stack expense tracking app with authentication and data visualization."
-          tech={["React", "Node", "SQLite"]}
-        />
+        <div className="project-card">
+          <h3>Portfolio Website</h3>
+          <p>Modern responsive portfolio built with React and Framer Motion.</p>
+          <div className="tech-stack">
+            <span>React</span>
+            <span>CSS</span>
+            <span>Framer Motion</span>
+          </div>
+        </div>
 
-        <ProjectCard
-          title="Business Entity Management System"
-          description="Internal system for managing business entities and sub-entities."
-          tech={["React", "TypeScript", "Prisma"]}
-        />
-
-        <ProjectCard
-          title="Portfolio Website"
-          description="A modern, responsive developer portfolio with smooth animations."
-          tech={["React", "Vite", "Framer Motion"]}
-        />
+        <div className="project-card">
+          <h3>Expense Tracker</h3>
+          <p>Track daily expenses with clean UI and data visualization.</p>
+          <div className="tech-stack">
+            <span>React</span>
+            <span>SQLite</span>
+            <span>Chart.js</span>
+          </div>
+        </div>
       </div>
     </section>
   );
