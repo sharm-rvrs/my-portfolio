@@ -1,18 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-
-const LINKS = [
-  { id: "home", label: "Home" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
-];
+import TypingLogo from "./typing-name";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(false);
-  };
 
   return (
     <motion.header
@@ -21,15 +12,16 @@ export default function Navbar() {
       animate={{ opacity: 1, y: 0 }}
     >
       <div className="nav-container">
-        <div className="logo">SHARM</div>
+        {/* LOGO */}
+        <div className="logo">
+          <TypingLogo />
+        </div>
 
         {/* DESKTOP NAV */}
         <nav className="nav-links desktop">
-          {LINKS.map((link) => (
-            <a key={link.id} href={`#${link.id}`}>
-              {link.label}
-            </a>
-          ))}
+          <a href="#home">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </nav>
 
         {/* HAMBURGER */}
@@ -44,7 +36,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -52,13 +43,16 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
           >
-            {LINKS.map((link) => (
-              <a key={link.id} href={`#${link.id}`} onClick={handleClick}>
-                {link.label}
-              </a>
-            ))}
+            <a href="#home" onClick={() => setOpen(false)}>
+              Home
+            </a>
+            <a href="#projects" onClick={() => setOpen(false)}>
+              Projects
+            </a>
+            <a href="#contact" onClick={() => setOpen(false)}>
+              Contact
+            </a>
           </motion.nav>
         )}
       </AnimatePresence>

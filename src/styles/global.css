@@ -115,11 +115,29 @@ body {
   transform: scale(1.08);
 }
 
-/* Offset anchor scroll for sticky navbar */
 #home,
 #projects,
 #contact {
-  scroll-margin-top: 120px; /* adjust to navbar height */
+  scroll-margin-top: 120px;
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.typing-logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.cursor {
+  margin-left: 2px;
+  color: var(--accent);
+}
+.cursor {
+  content: "▍";
 }
 
 /* =========================================================
@@ -299,6 +317,32 @@ body {
 .btn:hover {
   transform: translateY(-2px);
   opacity: 0.9;
+}
+
+/* ===== HERO TECH STACK ===== */
+.hero-tech {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.hero-tech span {
+  font-size: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--accent-light);
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.hero-tech span:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* =========================================================

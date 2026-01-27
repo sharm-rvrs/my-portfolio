@@ -20,13 +20,9 @@ export default function Home() {
           Software Developer
         </motion.h2>
 
-        <motion.p
-          className="hero-tagline"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          I build clean, modern web apps with React, TypeScript, and C#
+        <motion.p className="hero-tagline">
+          Full-stack software developer experienced in React, C#, ASP.NET Core,
+          and SQL-driven systems
         </motion.p>
 
         <motion.div
@@ -48,6 +44,20 @@ export default function Home() {
           </a>
         </motion.div>
       </div>
+
+      <motion.div
+        className="hero-tech"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65, duration: 0.5 }}
+      >
+        <span>React</span>
+        <span>TypeScript</span>
+        <span>C#</span>
+        <span>ASP.NET Core</span>
+        <span>SQL</span>
+        <span>Git</span>
+      </motion.div>
 
       <motion.div
         className="scroll-indicator"
