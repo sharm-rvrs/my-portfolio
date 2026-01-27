@@ -1,65 +1,67 @@
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+
+const LINKS = [
+  { id: "home", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  useEffect(() => {
-    const links = document.querySelectorAll(".nav-links a");
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const offset = targetElement.offsetTop - 80;
-          window.scrollTo({ top: offset, behavior: "smooth" });
-        }
-      });
-    });
-  }, []);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(false);
+  };
 
   return (
     <motion.header
       className="navbar"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="nav-container">
-        <motion.div
-          className="logo"
-          whileHover={{ scale: 1.1 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          SHARMAINE RIOVEROS
-        </motion.div>
+        <div className="logo">SHARM</div>
 
-        <nav className="nav-links">
-          {[
-            { href: "#home", label: "HOME" },
-            { href: "#projects", label: "PROJECTS" },
-            { href: "#services", label: "SERVICES" },
-            { href: "#about", label: "ABOUT" },
-          ].map((link) => (
-            <motion.a
-              key={link.href}
-              href={link.href}
-              whileHover={{ scale: 1.1, color: "var(--accent)" }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
+        {/* DESKTOP NAV */}
+        <nav className="nav-links desktop">
+          {LINKS.map((link) => (
+            <a key={link.id} href={`#${link.id}`}>
               {link.label}
-            </motion.a>
+            </a>
           ))}
         </nav>
 
-        <motion.a
-          href="#contact"
-          className="contact-btn"
-          whileHover={{ scale: 1.1, backgroundColor: "var(--accent)" }}
-          transition={{ type: "spring", stiffness: 300 }}
+        {/* HAMBURGER */}
+        <button
+          className={`hamburger ${open ? "open" : ""}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
         >
-          Contact
-        </motion.a>
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+          >
+            {LINKS.map((link) => (
+              <a key={link.id} href={`#${link.id}`} onClick={handleClick}>
+                {link.label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

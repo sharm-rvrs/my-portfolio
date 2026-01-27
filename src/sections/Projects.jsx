@@ -1,27 +1,31 @@
+import ProjectCard from "../components/project-card";
+
 export default function Projects() {
   return (
-    <section className="section" id="projects">
-      <h2>Projects</h2>
+    <section id="projects" className="section">
+      <div className="projects-header">
+        <h2>Featured Projects</h2>
+        <p>
+          A selection of projects showcasing my experience with full-stack
+          development and modern web technologies.
+        </p>
+      </div>
 
       <div className="projects-grid">
-        <div className="project-card">
-          <h3>Treasure Juniors</h3>
-          <p>Lorem Ipsum</p>
-          <div className="tech-stack">
-            <span>C#</span>
-            <span>Unity 3D</span>
-          </div>
-        </div>
+        <ProjectCard
+          title="Portfolio Website"
+          description="Personal portfolio showcasing my projects, skills, and experience with smooth animations and modern UI."
+          tech={["React", "Vite", "CSS", "Framer Motion"]}
+          github="https://github.com/sharm-rvrs/portfolio"
+          // live="https://your-portfolio-link.com"
+        />
 
-        <div className="project-card">
-          <h3>Expense Tracker</h3>
-          <p>Track daily expenses with clean UI and data visualization.</p>
-          <div className="tech-stack">
-            <span>React</span>
-            <span>SQLite</span>
-            <span>Typescript</span>
-          </div>
-        </div>
+        <ProjectCard
+          title="Full-Stack Web App"
+          description="Authentication-based full-stack application with CRUD features and database integration."
+          tech={["C#", ".NET", "React", "SQL"]}
+          github="https://github.com/sharm-rvrs/project"
+        />
       </div>
     </section>
   );
