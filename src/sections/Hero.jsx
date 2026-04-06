@@ -235,7 +235,7 @@ export default function Hero() {
               }}
             >
               <img
-                src="/me.jpg"
+                src="/my-portfolio/me.jpg"
                 alt="Sharmaine Rioveros"
                 style={{
                   width: "130%",
