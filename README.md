@@ -1,4 +1,4 @@
-# Hi, I'm Sharmaine Rioveros 👋
+# Hello!
 
 Welcome to my personal portfolio! I’m a **software developer** based in Taguig, Philippines, building fast, maintainable, and intuitive full-stack web applications.
 

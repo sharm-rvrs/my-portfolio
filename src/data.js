@@ -10,7 +10,7 @@ export const personal = {
   email: "sharmainerioveros@gmail.com",
   github: "https://github.com/sharm-rvrs",
   portfolio: "https://sharm-rvrs.github.io/my-portfolio/",
-  resume: "/resume.pdf",
+  resume: "my-portfolio/resume.pdf",
 };
 
 export const techCategories = [
