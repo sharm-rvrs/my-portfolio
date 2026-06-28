@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
 import { personal } from "../data";
+import { useTheme } from "../context/ThemeContext";
 
 const links = [
   { label: "About",    href: "#about" },
@@ -13,6 +15,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
@@ -30,7 +33,7 @@ export default function Navbar() {
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
           padding: "0 5%", height: 62,
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          background: scrolled ? "rgba(14,14,14,0.92)" : "transparent",
+          background: scrolled ? "var(--nav-scrolled)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
           transition: "all 0.35s var(--ease)",
@@ -61,6 +64,24 @@ export default function Navbar() {
             onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}
           >resume ↗</a>
+
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{
+              width: 34, height: 34, borderRadius: "50%",
+              border: "1px solid var(--border)",
+              background: "transparent",
+              color: "var(--muted)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", transition: "border-color 0.2s, color 0.2s",
+              flexShrink: 0,
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}
+          >
+            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
         </div>
 
         <button onClick={() => setOpen(!open)} className="ham-btn"
@@ -92,6 +113,18 @@ export default function Navbar() {
               style={{ marginTop:14, padding:"11px 0", color:"var(--accent)", fontSize:14 }}>
               resume ↗
             </a>
+            <button
+              onClick={toggleTheme}
+              style={{
+                marginTop: 8, padding: "11px 0", color: "var(--muted)",
+                fontSize: 13, fontFamily: "var(--font-mono)",
+                display: "flex", alignItems: "center", gap: 8,
+                background: "none", border: "none", cursor: "pointer",
+              }}
+            >
+              {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+              {theme === "dark" ? "Light mode" : "Dark mode"}
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

@@ -213,7 +213,7 @@ export const projects = [
     color: "#be185d",
     highlights: [
       "Zero component libraries — all layout and animations handwritten from scratch",
-      "AI chat agent — visitors can ask questions about my background, projects, and skills directly",
+      "AI chat agent via Groq — visitors can ask questions about my background, projects, and skills directly",
       "Serverless API route on Vercel keeps the API key server-side and out of the bundle",
       "Fully responsive with semantic, accessible markup throughout",
     ],
