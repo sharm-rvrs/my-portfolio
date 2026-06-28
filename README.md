@@ -1,30 +1,29 @@
-# Hello!
+# Sharmaine Rioveros — Portfolio
 
-Welcome to my personal portfolio! I’m a **software developer** based in Taguig, Philippines, building fast, maintainable, and intuitive full-stack web applications.
+Personal portfolio site built with React and Vite. No UI libraries, no templates — all layout, animations, and styling handwritten from scratch.
 
-This site showcases **selected projects, my tech stack, and skills**. Some of my work is proprietary at my company, so what you see here is a curated sample.
+**Live:** https://sharmaine.vercel.app
 
----
+## Stack
 
-## What’s Inside
+- React 18, Vite
+- Framer Motion
+- Plain CSS custom properties
+- AI chat via Groq (serverless API route on Vercel)
 
-- **Tech Stack:** React, TypeScript, Node.js, Vite, Tailwind, C#, and more
-- **Projects:** AI pipelines, freelance client sites, personal apps, and a published 3D mobile game
-- **Resume:** Downloadable PDF [here](public/resume.pdf)
+## Local dev
 
----
+```bash
+npm install
+npm run dev       # Vite dev server + local /api/chat route
+```
 
-## Explore
+Requires a `.env.local` file with:
 
-- Scroll through **Home → About → Tech Stack → Projects → Certifications → Contact**
-- Fully responsive and animated with Framer Motion
+```
+GROQ_API_KEY=your_key_here
+```
 
----
+## Deploy
 
-## Connect with Me
-
-- GitHub: [sharm-rvrs](https://github.com/sharm-rvrs)
-- Portfolio: [sharm-rvrs.github.io/my-portfolio](https://sharm-rvrs.github.io/my-portfolio/)
-- Email: sharmainerioveros@gmail.com
-
-Thanks for stopping by! 🌟
+Auto-deploys to Vercel on every push to `main`.
