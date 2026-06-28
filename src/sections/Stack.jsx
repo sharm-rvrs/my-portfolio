@@ -1,54 +1,37 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { techCategories, DEV } from "../data";
+import { techCategories } from "../data";
 
-function TechChip({ name, icon, emoji }) {
-  const [hovered, setHovered] = useState(false);
-
+function TechItem({ name, icon, emoji }) {
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
         display: "flex",
         alignItems: "center",
         gap: 9,
-        padding: "9px 16px",
-        borderRadius: "var(--radius-pill)",
-        border: `1px solid ${
-          hovered ? "rgba(200,149,90,0.4)" : "var(--border)"
-        }`,
-        background: hovered ? "var(--surface)" : "transparent",
-        cursor: "default",
-        transition: "all 0.22s",
-        transform: hovered ? "translateY(-2px)" : "none",
-        boxShadow: hovered ? "0 4px 16px rgba(0,0,0,0.3)" : "none",
+        padding: "7px 0",
       }}
     >
       {icon ? (
         <img
           src={icon}
           alt={name}
-          width={17}
-          height={17}
-          style={{
-            flexShrink: 0,
-            opacity: hovered ? 1 : 0.75,
-            transition: "opacity 0.2s",
-          }}
+          width={15}
+          height={15}
+          style={{ flexShrink: 0, opacity: 0.8 }}
+          onError={(e) => { e.currentTarget.style.display = "none"; }}
         />
       ) : (
-        <span style={{ fontSize: 15, lineHeight: 1 }}>{emoji}</span>
+        <span style={{ fontSize: 13, lineHeight: 1, width: 15, textAlign: "center", flexShrink: 0 }}>
+          {emoji}
+        </span>
       )}
-
       <span
         style={{
           fontSize: 13,
-          fontWeight: 400,
-          color: hovered ? "var(--text)" : "var(--muted)",
-          transition: "color 0.2s",
-          whiteSpace: "nowrap",
+          color: "var(--muted)",
           fontFamily: "var(--font-mono)",
+          fontWeight: 400,
+          whiteSpace: "nowrap",
         }}
       >
         {name}
@@ -57,11 +40,62 @@ function TechChip({ name, icon, emoji }) {
   );
 }
 
+function CategoryCard({ cat, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: index * 0.07 }}
+      style={{
+        background: "var(--surface)",
+        borderRadius: "var(--radius-lg)",
+        border: "1px solid var(--border)",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div
+        style={{
+          height: 2,
+          background: "linear-gradient(90deg, var(--accent) 0%, transparent 70%)",
+        }}
+      />
+      <div style={{ padding: "20px 22px", flex: 1 }}>
+        <p
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            color: "var(--accent)",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            fontWeight: 500,
+            marginBottom: 14,
+          }}
+        >
+          {cat.category}
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            columnGap: 12,
+          }}
+        >
+          {cat.items.map((item) => (
+            <TechItem key={item.name} {...item} />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Stack() {
   return (
     <section id="stack" className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
-        {/* Header */}
         <motion.p
           className="section-tag"
           initial={{ opacity: 0 }}
@@ -86,159 +120,24 @@ export default function Stack() {
           supporting real-world production systems.
         </p>
 
-        {/* 🔥 Core Stack */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 }}
+        <div
           style={{
-            marginBottom: 40,
-            padding: "20px 24px",
-            borderRadius: "var(--radius-lg)",
-            background: "var(--surface)",
-            border: "1px solid var(--border)",
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 14,
           }}
+          className="stack-grid"
         >
-          <p
-            style={{
-              fontSize: 12,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "var(--accent)",
-              marginBottom: 12,
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            Core Stack
-          </p>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <TechChip name="React" icon={`${DEV}/react/react-original.svg`} />
-            <TechChip
-              name="TypeScript"
-              icon={`${DEV}/typescript/typescript-original.svg`}
-            />
-            <TechChip name="C#" icon={`${DEV}/csharp/csharp-original.svg`} />
-            <TechChip
-              name="ASP.NET Core"
-              icon={`${DEV}/dotnetcore/dotnetcore-original.svg`}
-            />
-            <TechChip
-              name="SQL Server"
-              icon={`${DEV}/microsoftsqlserver/microsoftsqlserver-original.svg`}
-            />
-          </div>
-        </motion.div>
-
-        {/* Categories */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-          {techCategories.map((cat, ci) => (
-            <motion.div
-              key={cat.category}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: ci * 0.07 }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 14,
-                  marginBottom: 16,
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 10,
-                    fontWeight: 500,
-                    color: "var(--accent)",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {cat.category}
-                </p>
-                <div
-                  style={{ flex: 1, height: 1, background: "var(--border)" }}
-                />
-              </div>
-
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 9 }}>
-                {cat.items.map((item) => (
-                  <TechChip key={item.name} {...item} />
-                ))}
-              </div>
-            </motion.div>
+          {techCategories.map((cat, i) => (
+            <CategoryCard key={cat.category} cat={cat} index={i} />
           ))}
         </div>
-
-        {/* AI Callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          style={{
-            marginTop: 56,
-            padding: "28px 32px",
-            borderRadius: "var(--radius-lg)",
-            background: "var(--surface)",
-            border: "1px solid var(--border)",
-            display: "flex",
-            gap: 22,
-            alignItems: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              width: 48,
-              height: 48,
-              background: "var(--accent-light)",
-              borderRadius: 12,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 22,
-              flexShrink: 0,
-              border: "1px solid rgba(200,149,90,0.2)",
-            }}
-          >
-            🤖
-          </div>
-
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-head)",
-                fontWeight: 700,
-                fontSize: 18,
-                color: "var(--text)",
-                marginBottom: 7,
-              }}
-            >
-              AI & LLM Integration
-            </p>
-
-            <p
-              style={{
-                fontSize: 14,
-                color: "var(--muted)",
-                lineHeight: 1.8,
-                fontWeight: 300,
-              }}
-            >
-              Exposed to integrating large language models at work and in
-              personal projects. Familiar with OpenAI and Azure AI Services,
-              prompt engineering, and AI-assisted workflows like document
-              processing.
-            </p>
-          </div>
-        </motion.div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) { .stack-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 540px) { .stack-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </section>
   );
 }
