@@ -55,7 +55,7 @@ export default function About() {
                 }}
               >
                 <img
-                  src="/my-portfolio/me.jpg"
+                  src="/my-portfolio/images/me.jpg"
                   alt="Sharmaine Rioveros"
                   style={{
                     width: "130%",
