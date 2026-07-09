@@ -130,7 +130,7 @@ export default function ChatWidget() {
         ...next,
         {
           role: "assistant",
-          content: "Couldn't connect right now — please try again in a moment.",
+          content: "Couldn't connect right now, please try again in a moment.",
         },
       ]);
     } finally {
@@ -248,8 +248,8 @@ export default function ChatWidget() {
             <button
               onClick={() => setOpen(false)}
               style={{
-                width: 28,
-                height: 28,
+                width: 36,
+                height: 36,
                 borderRadius: "50%",
                 background: "var(--surface2)",
                 border: "1px solid var(--border)",
@@ -396,8 +396,8 @@ export default function ChatWidget() {
               onClick={() => send()}
               disabled={!input.trim() || loading}
               style={{
-                width: 38,
-                height: 38,
+                width: 40,
+                height: 40,
                 borderRadius: "50%",
                 background:
                   !input.trim() || loading ? "var(--surface2)" : "var(--accent)",

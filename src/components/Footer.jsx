@@ -9,7 +9,7 @@ export default function Footer() {
       flexWrap: "wrap", gap: 12,
     }}>
       <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: "0.03em" }}>
-        © {new Date().getFullYear()} <span style={{ color: "var(--accent)" }}>Sharmaine Rioveros</span> · Built with React & Framer Motion
+        © {new Date().getFullYear()} <span style={{ color: "var(--accent)" }}>Sharmaine Rioveros</span>
       </p>
       <div style={{ display: "flex", gap: 28 }}>
         {[

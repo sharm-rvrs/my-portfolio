@@ -99,8 +99,8 @@ export default function About() {
                 }}
               >
                 {[
-                  ["5+", "Projects"],
-                  ["2+", "Years"],
+                  ["6+", "Projects"],
+                  ["3+", "Years"],
                   ["6", "Certs"],
                   ["1", "Game"],
                 ].map(([v, l]) => (
@@ -167,17 +167,16 @@ export default function About() {
             <motion.p
               {...anim(0.32)}
               style={{
-                fontSize: 15,
-                color: "var(--muted)",
-                lineHeight: 1.85,
+                fontFamily: "var(--font-head)",
+                fontStyle: "italic",
+                fontSize: 14,
+                color: "var(--muted2)",
+                lineHeight: 1.6,
                 marginBottom: 32,
-                fontWeight: 300,
               }}
             >
-              I’ve built and shipped production systems end-to-end. Features,
-              APIs, and database logic that support real users every day. I
-              care about clean code, thoughtful architecture, and software
-              that holds up in the real world, not just in demos.
+              I like reading the error, reproducing it, and understanding
+              why before reaching for a fix.
             </motion.p>
 
             <motion.div
@@ -192,7 +191,7 @@ export default function About() {
               }}
             >
               {[
-                ["Focus", "Full-Stack Web Development"],
+                ["Focus", "Full-Stack Development & Automation"],
                 ["Education", "Bachelor's in Computer Science"],
                 ["Location", personal.location],
                 ["Status", "Open to full-time roles & freelance"],

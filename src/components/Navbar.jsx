@@ -42,8 +42,7 @@ export default function Navbar() {
         <a href="#home" style={{
           fontFamily: "var(--font-head)", fontWeight: 700, fontSize: 19,
           color: "var(--text)", letterSpacing: "-0.02em",
-        }}>
-          Sharmaine<span style={{ color: "var(--accent)" }}>.</span>
+        }}><span style={{ color: "var(--accent)" }}>.</span>
         </a>
 
         <div style={{ display: "flex", gap: 28, alignItems: "center" }} className="nav-links">
@@ -85,7 +84,10 @@ export default function Navbar() {
         </div>
 
         <button onClick={() => setOpen(!open)} className="ham-btn"
-          style={{ display: "none", flexDirection: "column", gap: 5, padding: 6 }} aria-label="Menu">
+          style={{
+            display: "none", flexDirection: "column", alignItems: "center", justifyContent: "center",
+            gap: 5, width: 44, height: 44, flexShrink: 0,
+          }} aria-label="Menu">
           {[0,1,2].map(i => (
             <motion.span key={i}
               animate={open ? (i===1?{opacity:0}:{rotate:i===0?45:-45,y:i===0?7:-7}) : {rotate:0,y:0,opacity:1}}

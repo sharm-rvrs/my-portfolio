@@ -1,42 +1,22 @@
 import { motion } from "framer-motion";
 import { techCategories } from "../data";
 
-function TechItem({ name, icon, emoji }) {
+function TechItem({ name }) {
   return (
-    <div
+    <span
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 9,
-        padding: "7px 0",
+        background: "var(--surface2)",
+        color: "var(--muted)",
+        fontFamily: "var(--font-mono)",
+        fontSize: 12,
+        padding: "5px 12px",
+        borderRadius: "var(--radius-pill)",
+        border: "1px solid var(--border)",
+        whiteSpace: "nowrap",
       }}
     >
-      {icon ? (
-        <img
-          src={icon}
-          alt={name}
-          width={15}
-          height={15}
-          style={{ flexShrink: 0, opacity: 0.8 }}
-          onError={(e) => { e.currentTarget.style.display = "none"; }}
-        />
-      ) : (
-        <span style={{ fontSize: 13, lineHeight: 1, width: 15, textAlign: "center", flexShrink: 0 }}>
-          {emoji}
-        </span>
-      )}
-      <span
-        style={{
-          fontSize: 13,
-          color: "var(--muted)",
-          fontFamily: "var(--font-mono)",
-          fontWeight: 400,
-          whiteSpace: "nowrap",
-        }}
-      >
-        {name}
-      </span>
-    </div>
+      {name}
+    </span>
   );
 }
 
@@ -78,13 +58,13 @@ function CategoryCard({ cat, index }) {
         </p>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            columnGap: 12,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 8,
           }}
         >
           {cat.items.map((item) => (
-            <TechItem key={item.name} {...item} />
+            <TechItem key={item} name={item} />
           ))}
         </div>
       </div>
@@ -116,7 +96,7 @@ export default function Stack() {
         </motion.h2>
 
         <p className="section-sub">
-          A practical toolkit across the full stack — focused on building and
+          A practical toolkit across the full stack, focused on building and
           supporting real-world production systems.
         </p>
 

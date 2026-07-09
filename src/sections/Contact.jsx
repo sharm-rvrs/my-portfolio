@@ -17,15 +17,15 @@ export default function Contact() {
 
           <h2 style={{
             fontFamily: "var(--font-head)", fontWeight: 700,
-            fontSize: "clamp(30px, 5vw, 50px)", color: "var(--text)",
+            fontSize: "clamp(27px, 5vw, 50px)", color: "var(--text)",
             lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: 20,
           }}>
-            Let's build something<br />
-            <em style={{ color: "var(--accent)" }}>worth remembering.</em>
+            Let's build something<br />
+            <em style={{ color: "var(--accent)" }}>worth remembering.</em>
           </h2>
 
           <p style={{ fontSize: 15, color: "var(--muted)", maxWidth: 400, margin: "0 auto 40px", lineHeight: 1.8, fontWeight: 300 }}>
-            I'm actively looking for my next opportunity — whether it's a full-time role, a freelance project, or something in between.
+            I'm actively looking for my next opportunity, whether it's a full-time role, a freelance project, or something in between.
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 56 }}>
@@ -51,7 +51,7 @@ export default function Contact() {
                 onMouseLeave={e => e.currentTarget.style.background = "var(--surface)"}
               >
                 <p style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{l.label}</p>
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)" }}>{l.sub}</p>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", overflowWrap: "break-word" }}>{l.sub}</p>
               </a>
             ))}
           </div>

@@ -1,13 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import { projects } from "../data";
-
-const badgeMap = {
-  cyan: "badge-cyan",
-  green: "badge-green",
-  indigo: "badge-indigo",
-  amber: "badge-amber",
-};
 
 const palettes = {
   7: { bg: "#020c1b", lines: ["#3b82f6", "#60a5fa", "#93c5fd"], accent: "#3b82f6", label: "Enterprise" },
@@ -113,8 +107,9 @@ function NavBtn({ onClick, disabled, children }) {
     <button
       onClick={onClick}
       disabled={disabled}
+      className="gallery-navbtn"
       style={{
-        width: 34, height: 34, borderRadius: "50%",
+        width: 40, height: 40, borderRadius: "50%",
         background: disabled ? "transparent" : "var(--surface2)",
         border: `1px solid ${disabled ? "var(--border2)" : "var(--border)"}`,
         color: disabled ? "var(--border)" : "var(--muted)",
@@ -145,8 +140,8 @@ function Gallery({ project }) {
 
   if (project.mobile) {
     return (
-      <div style={{ padding: "24px 24px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+      <div className="gallery-mobile-wrap" style={{ padding: "24px 24px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
+        <div className="gallery-mobile-row" style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <NavBtn onClick={() => setActive((a) => Math.max(0, a - 1))} disabled={active === 0}>←</NavBtn>
           <PhoneMockup src={images[active]} alt={project.title} />
           <NavBtn onClick={() => setActive((a) => Math.min(images.length - 1, a + 1))} disabled={active === images.length - 1}>→</NavBtn>
@@ -246,8 +241,8 @@ function ProjectModal({ project, onClose }) {
         <button
           onClick={onClose}
           style={{
-            position: "absolute", top: 18, right: 18, zIndex: 1,
-            width: 32, height: 32, borderRadius: "50%",
+            position: "absolute", top: 14, right: 14, zIndex: 1,
+            width: 40, height: 40, borderRadius: "50%",
             background: "var(--surface2)", border: "1px solid var(--border)",
             color: "var(--muted)", fontSize: 14, cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
@@ -256,7 +251,7 @@ function ProjectModal({ project, onClose }) {
           onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
           onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}
         >
-          ✕
+          <X size={16} />
         </button>
 
         {/* Gallery */}
@@ -264,11 +259,8 @@ function ProjectModal({ project, onClose }) {
 
         {/* Content */}
         <div style={{ padding: "22px 24px 28px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
-            {project.badge && (
-              <span className={`badge ${badgeMap[project.badgeColor] || "badge-amber"}`}>{project.badge}</span>
-            )}
-            <div style={{ display: "flex", gap: 14, marginLeft: "auto" }}>
+          {(project.github || project.live) && (
+            <div style={{ display: "flex", justifyContent: "flex-end", gap: 14, marginBottom: 14 }}>
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer"
                   style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
@@ -284,7 +276,7 @@ function ProjectModal({ project, onClose }) {
                 >Live ↗</a>
               )}
             </div>
-          </div>
+          )}
 
           <h3 style={{ fontFamily: "var(--font-head)", fontWeight: 700, fontSize: 22, color: "var(--text)", marginBottom: 4, letterSpacing: "-0.01em" }}>
             {project.title}
@@ -321,81 +313,132 @@ function ProjectModal({ project, onClose }) {
   );
 }
 
-function ProjectCard({ project, i, onOpen }) {
+function ProjectRow({ project, index, onOpen, featured = false }) {
+  const hasThumb = project.gallery && project.gallery.length > 0;
+  const cappedTech = project.tech.slice(0, 5);
+  const extraTech = project.tech.length - cappedTech.length;
+  const thumbWidth = project.mobile ? 112 : 220;
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 22 }}
+      className="project-row"
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.06 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45, delay: index * 0.04, ease: [0.4, 0, 0.2, 1] }}
+      onClick={() => onOpen(project)}
       style={{
         position: "relative",
-        borderRadius: "var(--radius-lg)",
-        border: "1px solid var(--border)",
-        background: "var(--surface)",
+        borderBottom: "1px solid var(--border2)",
+        padding: featured ? "34px 0" : "28px 0",
+        cursor: "pointer",
         overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        padding: "24px 26px",
-      }}
-      whileHover={{
-        borderColor: `${project.color}55`,
-        boxShadow: "0 12px 40px rgba(0,0,0,0.35)",
       }}
     >
-      {/* Colored top accent */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${project.color} 0%, transparent 60%)` }} />
-
-      {/* Badge + links */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-        {project.badge ? (
-          <span className={`badge ${badgeMap[project.badgeColor] || "badge-amber"}`}>{project.badge}</span>
-        ) : <span />}
-        <div style={{ display: "flex", gap: 14 }}>
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-            >GitHub ↗</a>
-          )}
-          {project.live && (
-            <a href={project.live} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-            >Live ↗</a>
-          )}
+      {hasThumb && (
+        <div
+          className="row-thumb"
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: thumbWidth,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            opacity: 0,
+            transform: "translateX(10px)",
+            transition: "opacity 0.3s ease, transform 0.3s ease",
+            pointerEvents: "none",
+          }}
+        >
+          <img
+            src={project.gallery[0]}
+            alt={project.title}
+            style={{
+              width: thumbWidth,
+              aspectRatio: project.mobile ? "9/19.5" : "16/9",
+              objectFit: "cover",
+              borderRadius: project.mobile ? 14 : "var(--radius)",
+              border: "1px solid var(--border)",
+              display: "block",
+            }}
+          />
         </div>
+      )}
+
+      <div className="row-body" style={{ display: "flex", alignItems: "flex-start", gap: 24 }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted2)", minWidth: 30, paddingTop: 6, flexShrink: 0 }}>
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {featured && (
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--accent)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 8 }}>
+              Professional
+            </p>
+          )}
+          <h3
+            className="row-title"
+            style={{
+              fontFamily: "var(--font-head)",
+              fontWeight: 700,
+              fontSize: featured ? 30 : 26,
+              color: "var(--text)",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.15,
+              marginBottom: 6,
+              transition: "color 0.25s",
+            }}
+          >
+            {project.title}
+          </h3>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent)", letterSpacing: "0.05em", marginBottom: 8 }}>
+            {project.role}
+          </p>
+          <p
+            className="row-blurb"
+            style={{
+              fontSize: 13,
+              color: "var(--muted)",
+              lineHeight: 1.6,
+              marginBottom: 10,
+              fontWeight: 300,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {project.blurb}
+          </p>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)" }}>
+            {cappedTech.join(", ")}
+            {extraTech > 0 ? `, +${extraTech}` : ""}
+          </p>
+        </div>
+
+        {(project.github || project.live) && (
+          <div style={{ display: "flex", gap: 14, flexShrink: 0, paddingTop: 6 }}>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+              >GitHub ↗</a>
+            )}
+            {project.live && (
+              <a href={project.live} target="_blank" rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+              >Live ↗</a>
+            )}
+          </div>
+        )}
       </div>
-
-      <h3 style={{ fontFamily: "var(--font-head)", fontWeight: 700, fontSize: 19, color: "var(--text)", marginBottom: 4, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
-        {project.title}
-      </h3>
-      <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent)", letterSpacing: "0.05em", marginBottom: 12 }}>
-        {project.role}
-      </p>
-      <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.8, marginBottom: 18, flex: 1, fontWeight: 300, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-        {project.description}
-      </p>
-
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 20 }}>
-        {project.tech.map((t) => (
-          <span key={t} style={{ padding: "3px 9px", borderRadius: "var(--radius-pill)", background: "var(--surface2)", border: "1px solid var(--border)", fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted)" }}>
-            {t}
-          </span>
-        ))}
-      </div>
-
-      <button
-        onClick={() => onOpen(project)}
-        style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 14, borderTop: "1px solid var(--border2)", fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted2)", letterSpacing: "0.1em", cursor: "pointer", transition: "color 0.2s", background: "transparent", textAlign: "left" }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-      >
-        <span>VIEW DETAILS</span>
-        <span>↗</span>
-      </button>
     </motion.article>
   );
 }
@@ -403,6 +446,10 @@ function ProjectCard({ project, i, onOpen }) {
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
   const closeModal = useCallback(() => setActiveProject(null), []);
+
+  const featured = projects.find((p) => p.id === 7);
+  const rest = projects.filter((p) => p.id !== 7);
+  const ordered = featured ? [featured, ...rest] : rest;
 
   return (
     <section id="projects" className="section" style={{ background: "var(--bg2)" }}>
@@ -417,9 +464,15 @@ export default function Projects() {
           Selected projects showcasing independent and freelance work. Some professional projects are proprietary.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="projects-grid">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.id} project={p} i={i} onOpen={setActiveProject} />
+        <div style={{ marginTop: 8, borderTop: "1px solid var(--border2)" }}>
+          {ordered.map((p, i) => (
+            <ProjectRow
+              key={p.id}
+              project={p}
+              index={i}
+              onOpen={setActiveProject}
+              featured={p.id === 7}
+            />
           ))}
         </div>
       </div>
@@ -429,7 +482,21 @@ export default function Projects() {
       </AnimatePresence>
 
       <style>{`
-        @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr !important; } }
+        .project-row:hover .row-title { color: var(--accent) !important; }
+        .project-row:hover .row-thumb { opacity: 1 !important; transform: translateX(0) !important; }
+        @media (max-width: 768px) {
+          .project-row .row-body { flex-direction: column; gap: 10px; }
+          .row-thumb { display: none !important; }
+          .row-blurb {
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
+          }
+        }
+        @media (max-width: 430px) {
+          .gallery-mobile-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+          .gallery-mobile-row { gap: 10px !important; }
+        }
       `}</style>
     </section>
   );
