@@ -1,5 +1,7 @@
+import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Stack from "./sections/Stack";
@@ -9,7 +11,7 @@ import Contact from "./sections/Contact";
 
 export default function App() {
   return (
-    <>
+    <ThemeProvider>
       <Navbar />
       <main>
         <Hero />
@@ -20,6 +22,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+      <ChatWidget />
+    </ThemeProvider>
   );
 }

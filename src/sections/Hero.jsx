@@ -89,16 +89,7 @@ export default function Hero() {
                 border: "1px solid rgba(200,149,90,0.2)",
               }}
             >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "var(--accent)",
-                  display: "inline-block",
-                }}
-              />
-              Available for Work
+              Open to opportunities
             </span>
           </motion.div>
 
@@ -235,7 +226,7 @@ export default function Hero() {
               }}
             >
               <img
-                src="/my-portfolio/me.jpg"
+                src="/images/me.jpg"
                 alt="Sharmaine Rioveros"
                 style={{
                   width: "130%",
@@ -272,34 +263,6 @@ export default function Hero() {
 
             <div
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                background: "rgba(34,197,94,0.1)",
-                color: "#4ade80",
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                padding: "5px 12px",
-                borderRadius: "var(--radius-pill)",
-                marginBottom: 24,
-                border: "1px solid rgba(34,197,94,0.18)",
-              }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  display: "inline-block",
-                  animation: "pulse 2s infinite",
-                }}
-              />
-              Open to opportunities
-            </div>
-
-            <div
-              style={{
                 borderTop: "1px solid var(--border)",
                 paddingTop: 20,
                 marginBottom: 22,
@@ -319,14 +282,14 @@ export default function Hero() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
                 {[
+                  "TypeScript",
                   "React",
                   "Next.js",
-                  "TypeScript",
-                  "Node.js",
                   "C#",
-                  "AI/LLM",
-                  "SQL",
-                  "Python",
+                  "ASP.NET Core",
+                  "Node.js",
+                  "PostgreSQL",
+                  "Docker",
                 ].map((s) => (
                   <span
                     key={s}

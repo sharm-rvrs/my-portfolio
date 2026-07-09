@@ -55,7 +55,7 @@ export default function About() {
                 }}
               >
                 <img
-                  src="/my-portfolio/me.jpg"
+                  src="/images/me.jpg"
                   alt="Sharmaine Rioveros"
                   style={{
                     width: "130%",
@@ -174,11 +174,10 @@ export default function About() {
                 fontWeight: 300,
               }}
             >
-              Early in my career, I’ve already worked on production systems
-              end-to-end. Building features, APIs, and database logic that
-              support real users. I care about clean code, thoughtful
-              architecture, and creating software that holds up in the real
-              world, not just in demos.
+              I’ve built and shipped production systems end-to-end. Features,
+              APIs, and database logic that support real users every day. I
+              care about clean code, thoughtful architecture, and software
+              that holds up in the real world, not just in demos.
             </motion.p>
 
             <motion.div
