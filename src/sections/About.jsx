@@ -100,7 +100,7 @@ export default function About() {
               >
                 {[
                   ["6+", "Projects"],
-                  ["3+", "Years"],
+                  ["3", "Years"],
                   ["6", "Certs"],
                   ["1", "Game"],
                 ].map(([v, l]) => (

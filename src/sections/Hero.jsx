@@ -9,7 +9,7 @@ const fade = (d = 0) => ({
 
 const stats = [
   { value: "6+", label: "Projects Shipped" },
-  { value: "3+", label: "Years Experience" },
+  { value: "3", label: "Years Experience" },
   { value: "6", label: "Certifications" },
 ];
 

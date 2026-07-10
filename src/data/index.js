@@ -3,7 +3,7 @@ export const personal = {
   role: "Software Developer",
   tagline:
     "Solid frontends, scalable backends, and automation systems that run in production.",
-  bio: "Software developer in Taguig, PH, with 3+ years shipping full-stack features in production enterprise systems: React and TypeScript frontends, ASP.NET Core APIs, and relational databases. Outside my day job I build my own products, most recently an AI-powered lead automation system on self-hosted n8n, deployed on Railway and Vercel.",
+  bio: "Software developer in Taguig, PH, with 3 years shipping full-stack features in production enterprise systems: React and TypeScript frontends, ASP.NET Core APIs, and relational databases. Outside my day job I build my own products, most recently an AI-powered lead automation system on self-hosted n8n, deployed on Railway and Vercel.",
   location: "Taguig, Philippines",
   email: "sharmainerioveros@gmail.com",
   github: "https://github.com/sharm-rvrs",
