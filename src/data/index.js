@@ -98,7 +98,7 @@ export const projects = [
     blurb: "Matches inmate names from PDFs against a live jail roster using Playwright and an LLM.",
     tech: ["Next.js", "TypeScript", "Playwright", "LLM API", "Nodemailer", "pdf-parse"],
     gallery: ["/images/matching.png"],
-    github: "https://github.com/sharm-rvrs/jail-matching-app-2",
+    github: "https://github.com/sharm-rvrs/matching-app",
     color: "#0e7490",
     highlights: [
       "Playwright scraper to reach JavaScript-rendered jail roster pages",
