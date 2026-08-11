@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, ArrowUpRight } from "lucide-react";
 import { personal } from "../data";
 import { useTheme } from "../context/ThemeContext";
 
@@ -55,6 +55,7 @@ export default function Navbar() {
           ))}
           <a href={personal.resume} target="_blank" rel="noopener noreferrer"
             style={{
+              display: "inline-flex", alignItems: "center", gap: 5,
               border: "1px solid var(--border)", color: "var(--muted)",
               padding: "7px 18px", borderRadius: "var(--radius-pill)",
               fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 400,
@@ -62,7 +63,7 @@ export default function Navbar() {
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}
-          >resume ↗</a>
+          >resume <ArrowUpRight size={13} /></a>
 
           <button
             onClick={toggleTheme}
@@ -112,8 +113,8 @@ export default function Navbar() {
               </a>
             ))}
             <a href={personal.resume} target="_blank" rel="noopener noreferrer"
-              style={{ marginTop:14, padding:"11px 0", color:"var(--accent)", fontSize:14 }}>
-              resume ↗
+              style={{ marginTop:14, padding:"11px 0", color:"var(--accent)", fontSize:14, display:"inline-flex", alignItems:"center", gap:6 }}>
+              resume <ArrowUpRight size={15} />
             </a>
             <button
               onClick={toggleTheme}

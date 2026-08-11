@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { personal } from "../data";
 
 export default function Contact() {
@@ -30,7 +31,7 @@ export default function Contact() {
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 56 }}>
             <a href={`mailto:${personal.email}`} className="btn-primary">Send a Message</a>
-            <a href={personal.resume} target="_blank" rel="noopener noreferrer" className="btn-outline">View Resume ↗</a>
+            <a href={personal.resume} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>View Resume <ArrowUpRight size={15} /></a>
           </div>
 
           <div style={{ display: "flex", gap: 0, borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", overflow: "hidden" }}>
