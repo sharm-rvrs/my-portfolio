@@ -11,7 +11,7 @@ const SUGGESTIONS = [
 const GREETING = {
   role: "assistant",
   content:
-    "Hi! I'm Sharm, Sharmaine's AI assistant. Ask me anything about her background, projects, or skills.",
+    "Hi! I'm Sharmaine's AI assistant. Ask me anything about her background, projects, or skills.",
 };
 
 function TypingDots() {
