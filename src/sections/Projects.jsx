@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "../data";
 
 const palettes = {
@@ -142,9 +142,9 @@ function Gallery({ project }) {
     return (
       <div className="gallery-mobile-wrap" style={{ padding: "24px 24px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
         <div className="gallery-mobile-row" style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <NavBtn onClick={() => setActive((a) => Math.max(0, a - 1))} disabled={active === 0}>←</NavBtn>
+          <NavBtn onClick={() => setActive((a) => Math.max(0, a - 1))} disabled={active === 0}><ChevronLeft size={18} /></NavBtn>
           <PhoneMockup src={images[active]} alt={project.title} />
-          <NavBtn onClick={() => setActive((a) => Math.min(images.length - 1, a + 1))} disabled={active === images.length - 1}>→</NavBtn>
+          <NavBtn onClick={() => setActive((a) => Math.min(images.length - 1, a + 1))} disabled={active === images.length - 1}><ChevronRight size={18} /></NavBtn>
         </div>
         <div style={{ display: "flex", gap: 7, alignItems: "center" }}>
           {images.map((_, i) => (
@@ -263,17 +263,17 @@ function ProjectModal({ project, onClose }) {
             <div style={{ display: "flex", justifyContent: "flex-end", gap: 14, marginBottom: 14 }}>
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-                >GitHub ↗</a>
+                >GitHub <ArrowUpRight size={12} /></a>
               )}
               {project.live && (
                 <a href={project.live} target="_blank" rel="noopener noreferrer"
-                  style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-                >Live ↗</a>
+                >Live <ArrowUpRight size={12} /></a>
               )}
             </div>
           )}
@@ -423,18 +423,18 @@ function ProjectRow({ project, index, onOpen, featured = false }) {
             {project.github && (
               <a href={project.github} target="_blank" rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-              >GitHub ↗</a>
+              >GitHub <ArrowUpRight size={12} /></a>
             )}
             {project.live && (
               <a href={project.live} target="_blank" rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted2)", transition: "color 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
-              >Live ↗</a>
+              >Live <ArrowUpRight size={12} /></a>
             )}
           </div>
         )}

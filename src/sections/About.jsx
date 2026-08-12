@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { personal } from "../data";
 
 export default function About() {
@@ -237,8 +238,9 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline"
+                style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
               >
-                GitHub ↗
+                GitHub <ArrowUpRight size={15} />
               </a>
             </motion.div>
           </div>
