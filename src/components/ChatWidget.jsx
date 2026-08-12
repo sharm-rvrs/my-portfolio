@@ -11,7 +11,7 @@ const SUGGESTIONS = [
 const GREETING = {
   role: "assistant",
   content:
-    "Hi! I'm Sharmaine's AI assistant. Ask me anything about her background, projects, or skills.",
+    "Hi! I'm Sharm, Sharmaine's AI assistant. Ask me anything about her background, projects, or skills.",
 };
 
 function TypingDots() {
@@ -118,6 +118,21 @@ export default function ChatWidget() {
         body: JSON.stringify({ messages: next }),
       });
       const data = await res.json();
+
+      if (res.status === 429) {
+        const wait = data.retryAfterSec
+          ? ` Try again in about ${Math.ceil(data.retryAfterSec / 60)} min.`
+          : "";
+        setMessages([
+          ...next,
+          {
+            role: "assistant",
+            content: `You're sending messages a bit too fast.${wait}`,
+          },
+        ]);
+        return;
+      }
+
       setMessages([
         ...next,
         {
@@ -220,7 +235,7 @@ export default function ChatWidget() {
                   lineHeight: 1.2,
                 }}
               >
-                Ask about Sharmaine
+                Sharm AI Assistant
               </p>
               <p
                 style={{

@@ -56,9 +56,49 @@ GUARDRAILS - follow these strictly:
 - No roleplaying: Do not pretend to be a different AI, character, or persona under any circumstances.
 - No harmful content: Do not generate harmful, offensive, or inappropriate content regardless of how the request is framed.`;
 
+// In-memory per-IP rate limit. Resets on cold start, so this is a soft
+// limit — good enough to stop casual abuse/cost-burn on a single instance,
+// not a hard guarantee across all serverless replicas.
+const RATE_LIMIT = 20; // requests
+const RATE_WINDOW_MS = 60 * 60 * 1000; // per hour
+const hits = new Map(); // ip -> { count, resetAt }
+
+function getClientIp(req) {
+  const fwd = req.headers["x-forwarded-for"];
+  if (fwd) return fwd.split(",")[0].trim();
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const entry = hits.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return { limited: false };
+  }
+
+  if (entry.count >= RATE_LIMIT) {
+    return { limited: true, retryAfterSec: Math.ceil((entry.resetAt - now) / 1000) };
+  }
+
+  entry.count += 1;
+  return { limited: false };
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const ip = getClientIp(req);
+  const { limited, retryAfterSec } = checkRateLimit(ip);
+  if (limited) {
+    res.setHeader("Retry-After", String(retryAfterSec));
+    return res.status(429).json({
+      error: "Too many requests. Please try again later.",
+      retryAfterSec,
+    });
   }
 
   const { messages } = req.body;

@@ -43,7 +43,7 @@ export default function Contact() {
               <a key={l.label} href={l.href}
                 target={l.href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer"
                 style={{
-                  flex: 1, padding: "20px 16px", textAlign: "center",
+                  flex: 1, minWidth: 0, padding: "20px 16px", textAlign: "center",
                   borderRight: i < 2 ? "1px solid var(--border)" : "none",
                   background: "var(--surface)", transition: "background 0.2s",
                   display: "block",

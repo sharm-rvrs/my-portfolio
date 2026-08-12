@@ -31,7 +31,7 @@ export default function Certifications() {
               }}
               whileHover={{ y: -3, borderColor: "rgba(200,149,90,0.25)" }}
             >
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: cert.color, opacity: 0.7 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "var(--accent)", opacity: 0.7 }} />
               <div style={{
                 width: 44, height: 44, borderRadius: 10,
                 background: "var(--surface2)", border: "1px solid var(--border)",

@@ -3,55 +3,52 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "../data";
 
-const palettes = {
-  7: { bg: "#020c1b", lines: ["#3b82f6", "#60a5fa", "#93c5fd"], accent: "#3b82f6", label: "Enterprise" },
-  1: { bg: "#051209", lines: ["#4ade80", "#22c55e", "#86efac"], accent: "#4ade80" },
-  2: { bg: "#050d14", lines: ["#22d3ee", "#0ea5e9", "#6366f1"], accent: "#22d3ee" },
-  3: { bg: "#031a16", lines: ["#2dd4bf", "#14b8a6", "#5eead4"], accent: "#2dd4bf", label: "Fitness + AI" },
-  4: { bg: "#140d02", lines: ["#fbbf24", "#f59e0b", "#fde68a"], accent: "#fbbf24", label: "Finance" },
-  5: { bg: "#08061e", lines: ["#a5b4fc", "#818cf8", "#c4b5fd"], accent: "#a5b4fc" },
-  6: { bg: "#160510", lines: ["#f472b6", "#ec4899", "#fda4af"], accent: "#f472b6", label: "Portfolio" },
+const PLACEHOLDER_LABELS = {
+  7: "Enterprise",
+  3: "Fitness + AI",
+  4: "Finance",
+  6: "Portfolio",
 };
 
 function PlaceholderVisual({ project }) {
-  const p = palettes[project.id] || palettes[1];
+  const label = PLACEHOLDER_LABELS[project.id];
   return (
     <div
       style={{
         width: "100%",
         aspectRatio: "16/9",
         borderRadius: "var(--radius)",
-        background: p.bg,
+        background: "var(--bg2)",
         overflow: "hidden",
         position: "relative",
-        border: "1px solid rgba(255,255,255,0.06)",
+        border: "1px solid var(--border)",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <div style={{ padding: "8px 12px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 5 }}>
+      <div style={{ padding: "8px 12px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 5 }}>
         {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (
-          <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: c, opacity: 0.8 }} />
+          <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: c, opacity: 0.6 }} />
         ))}
-        <div style={{ flex: 1, height: 14, background: "rgba(255,255,255,0.05)", borderRadius: 4, marginLeft: 8 }} />
+        <div style={{ flex: 1, height: 14, background: "var(--surface2)", borderRadius: 4, marginLeft: 8 }} />
       </div>
       <div style={{ padding: "14px 14px", display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
-        <div style={{ height: 22, background: `linear-gradient(90deg, ${p.accent}1a 0%, transparent 80%)`, borderRadius: 4, display: "flex", alignItems: "center", paddingLeft: 8, gap: 6 }}>
-          <div style={{ width: 3, height: 10, background: p.accent, borderRadius: 2 }} />
-          <div style={{ width: 70, height: 5, background: `${p.accent}44`, borderRadius: 3 }} />
+        <div style={{ height: 22, background: "var(--accent-light)", borderRadius: 4, display: "flex", alignItems: "center", paddingLeft: 8, gap: 6 }}>
+          <div style={{ width: 3, height: 10, background: "var(--accent)", borderRadius: 2 }} />
+          <div style={{ width: 70, height: 5, background: "var(--accent)", opacity: 0.35, borderRadius: 3 }} />
         </div>
         {[100, 72, 84, 55].map((w, i) => (
-          <div key={i} style={{ height: 4, width: `${w}%`, background: "rgba(255,255,255,0.07)", borderRadius: 3 }} />
+          <div key={i} style={{ height: 4, width: `${w}%`, background: "var(--surface2)", borderRadius: 3 }} />
         ))}
         <div style={{ display: "flex", gap: 6, marginTop: 2 }}>
           {[0, 1, 2].map((i) => (
-            <div key={i} style={{ flex: 1, height: 40, borderRadius: 6, background: `${p.lines[i]}10`, border: `1px solid ${p.lines[i]}25` }} />
+            <div key={i} style={{ flex: 1, height: 40, borderRadius: 6, background: "var(--accent-light)", border: "1px solid var(--border)" }} />
           ))}
         </div>
       </div>
-      {p.label && (
-        <div style={{ position: "absolute", top: 34, right: 10, background: `${p.accent}15`, border: `1px solid ${p.accent}30`, borderRadius: 4, padding: "2px 6px", fontFamily: "var(--font-mono)", fontSize: 9, color: p.accent, letterSpacing: "0.08em" }}>
-          {p.label}
+      {label && (
+        <div style={{ position: "absolute", top: 34, right: 10, background: "var(--accent-light)", border: "1px solid var(--border)", borderRadius: 4, padding: "2px 6px", fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--accent)", letterSpacing: "0.08em" }}>
+          {label}
         </div>
       )}
     </div>
@@ -235,7 +232,7 @@ function ProjectModal({ project, onClose }) {
         }}
       >
         {/* Colored top bar */}
-        <div style={{ height: 3, background: `linear-gradient(90deg, ${project.color} 0%, transparent 60%)`, borderRadius: "var(--radius-lg) var(--radius-lg) 0 0" }} />
+        <div style={{ height: 3, background: "linear-gradient(90deg, var(--accent) 0%, transparent 60%)", borderRadius: "var(--radius-lg) var(--radius-lg) 0 0" }} />
 
         {/* Close button */}
         <button
@@ -369,7 +366,12 @@ function ProjectRow({ project, index, onOpen, featured = false }) {
       )}
 
       <div className="row-body" style={{ display: "flex", alignItems: "flex-start", gap: 24 }}>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted2)", minWidth: 30, paddingTop: 6, flexShrink: 0 }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted2)", minWidth: 30, paddingTop: 6, flexShrink: 0, display: "flex", alignItems: "center", gap: 8 }}>
+          <span
+            className="row-dot"
+            aria-hidden="true"
+            style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent)", flexShrink: 0 }}
+          />
           {String(index + 1).padStart(2, "0")}
         </span>
 
@@ -484,9 +486,11 @@ export default function Projects() {
       <style>{`
         .project-row:hover .row-title { color: var(--accent) !important; }
         .project-row:hover .row-thumb { opacity: 1 !important; transform: translateX(0) !important; }
+        .row-dot { display: none; }
         @media (max-width: 768px) {
           .project-row .row-body { flex-direction: column; gap: 10px; }
           .row-thumb { display: none !important; }
+          .row-dot { display: inline-block; }
           .row-blurb {
             white-space: normal !important;
             overflow: visible !important;

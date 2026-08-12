@@ -45,7 +45,6 @@ export const projects = [
     tech: ["C#", "ASP.NET Core", "React", "TypeScript", ".NET Aspire", "MediatR", "Redis", "SignalR", "SQL Server", "PostgreSQL", "Prisma ORM", "Node.js"],
     gallery: [],
     noVisual: true,
-    color: "#1e40af",
     highlights: [
       "Built a clinical job management workspace solo, covering patient, job, appointment, and interview data with compliance-grade audit logging on every edit",
       "Shipped a cross-department monitoring dashboard for Finance and IT Admin, replacing manual status follow-ups with one real-time view",
@@ -64,7 +63,6 @@ export const projects = [
     gallery: ["/images/lead-intake.png"],
     github: "https://github.com/sharm-rvrs/lead-intake-automation",
     live: "https://bloomstudio-leads.vercel.app/",
-    color: "#d4a054",
     highlights: [
       "Two-layer validation: Zod on the client plus independent secret-header and format checks inside n8n, since the webhook is a public endpoint anyone can call directly",
       "LLM classification and reply drafting in one call with strict JSON output, safe parsing, and an unclassified fallback so no lead is ever lost to a bad AI response",
@@ -82,7 +80,6 @@ export const projects = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     gallery: ["/images/dngj.png"],
     live: "https://dngj-corporation.vercel.app/",
-    color: "#15803d",
     highlights: [
       "Five-page site delivered solo, from design to production deployment",
       "Scroll-triggered animations on hero, services, and featured project sections",
@@ -99,7 +96,6 @@ export const projects = [
     tech: ["Next.js", "TypeScript", "Playwright", "LLM API", "Nodemailer", "pdf-parse"],
     gallery: ["/images/matching.png"],
     github: "https://github.com/sharm-rvrs/matching-app",
-    color: "#0e7490",
     highlights: [
       "Playwright scraper to reach JavaScript-rendered jail roster pages",
       "LLM classification for name matching and fallback handling",
@@ -124,7 +120,6 @@ export const projects = [
     ],
     github: "https://github.com/sharm-rvrs/workout-app",
     live: "https://my-gainlog.vercel.app/",
-    color: "#0d9488",
     highlights: [
       "AI coaching powered by an LLM API, aware of the user's profile, workout history, and weekly program",
       "Workout logging with sets, reps, weight, rest timers, and localStorage persistence",
@@ -142,7 +137,6 @@ export const projects = [
     tech: ["Next.js", "TypeScript", "Mantine UI", "PostgreSQL", "Prisma", "NextAuth.js", "LLM API"],
     gallery: [],
     github: "https://github.com/sharm-rvrs/gastos",
-    color: "#d97706",
     highlights: [
       "Peso Buddy AI assistant powered by an LLM API, built around Manila pricing and local spending patterns",
       "Multi-wallet tracking across GCash, Maya, Cash, Credit Card, and Bank accounts",
@@ -161,7 +155,6 @@ export const projects = [
     gallery: ["/images/treasure.png"],
     github: "https://github.com/sharm-rvrs/treasure-juniors",
     live: "https://play.google.com/store/apps/details?id=treasure.juniors",
-    color: "#4338ca",
     highlights: [
       "Published on the Google Play Store, went through the full submission and release process",
       "NavMesh AI for real-time NPC pathfinding and dynamic navigation",
@@ -179,7 +172,6 @@ export const projects = [
     gallery: [],
     github: "https://github.com/sharm-rvrs/my-portfolio",
     live: "https://sharmaine.vercel.app/",
-    color: "#be185d",
     highlights: [
       "Zero component libraries: all layout and animations handwritten from scratch",
       "AI chat agent powered by an LLM API, visitors can ask questions about my background, projects, and skills directly",
