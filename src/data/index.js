@@ -14,7 +14,7 @@ export const personal = {
 export const techCategories = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "TanStack Query", "Zod"],
+    items: ["React", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS", "TanStack Query", "Zod"],
   },
   {
     category: "Backend & APIs",
@@ -40,16 +40,15 @@ export const projects = [
     title: "eData Services Philippines, Inc.",
     role: "Full-Stack Developer · 2023–Present",
     description:
-      "Full-stack developer on internal enterprise systems at a BPO company: five production applications spanning operational workflows, clinical data processing, finance routing, request management, and QA. I own features end to end within an agile scrum team. Systems are proprietary, so the highlights describe scope rather than linking out.",
-    blurb: "Enterprise systems at a BPO company: clinical data, finance, and ops workflows.",
-    tech: ["C#", "ASP.NET Core", "React", "TypeScript", ".NET Aspire", "MediatR", "Redis", "SignalR", "SQL Server", "PostgreSQL", "Prisma ORM", "Node.js"],
+      "Full-stack developer on multiple internal enterprise systems at a BPO company, working across the entire stack, frontend, backend, and database, resolving tickets end to end within an agile scrum team. Systems are proprietary, so the highlights describe impact rather than linking out.",
+    blurb: "Full-stack development on multiple internal enterprise systems at a BPO company.",
+    tech: ["C#", "ASP.NET Core", "React", "TypeScript", ".NET Aspire", "MediatR", "PostgreSQL", "Redis", "RabbitMQ", "SignalR", "Keycloak (OIDC)"],
     gallery: [],
     noVisual: true,
     highlights: [
-      "Built a clinical job management workspace solo, covering patient, job, appointment, and interview data with compliance-grade audit logging on every edit",
-      "Shipped a cross-department monitoring dashboard for Finance and IT Admin, replacing manual status follow-ups with one real-time view",
-      "Designed an AI prompt configuration module governing per-entity prompt settings tied to transcription template structure",
-      "Resolved production incidents, including a critical slowdown on operations cutoff day and an AI worker outage fixed over SSH across multiple servers",
+      "Owned full-stack features end to end, from database and API design through to the React UI, across a continuously expanding production platform",
+      "Contributed to a full platform rebuild, modernizing a legacy system into a current, faster, more maintainable stack",
+      "Resolved production incidents, including a critical performance slowdown during a high-traffic period and a service outage fixed through direct server access",
     ],
   },
   {
@@ -75,15 +74,19 @@ export const projects = [
     title: "DNGJ Corporation Website",
     role: "Frontend Developer · Freelance",
     description:
-      "Marketing website for a Philippine engineering and construction firm. Handled everything from design direction to deployment. Clean, fast, and built to match the client's brand.",
+      "Marketing website for a Philippine engineering and construction firm. Handled everything from design direction to deployment. Clean, fast, with light and dark themes, and built to match the client's brand.",
     blurb: "Marketing site for a Philippine engineering firm, from design to deployment.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
-    gallery: ["/images/dngj.png"],
+    gallery: [
+      "/images/dngj/dngj-landing-page-white.png",
+      "/images/dngj/dngj-landing-page-dark.png",
+    ],
     live: "https://dngj-corporation.vercel.app/",
     highlights: [
-      "Five-page site delivered solo, from design to production deployment",
+      "Nine-page site delivered solo, from design to production deployment",
       "Scroll-triggered animations on hero, services, and featured project sections",
-      "Navy-gold brand palette with Barlow Condensed typography for industry credibility",
+      "Light/dark theme toggle with a persisted preference across the site",
+      "Navy-teal brand palette with Barlow Condensed typography for industry credibility",
     ],
   },
   {

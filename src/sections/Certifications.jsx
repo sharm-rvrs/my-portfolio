@@ -16,7 +16,7 @@ export default function Certifications() {
           Verified credentials across cloud computing, AI foundations, systems programming, and cybersecurity.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))", gap: 14 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14 }} className="certs-grid">
           {certifications.map((cert, i) => {
             const Icon = iconMap[cert.icon];
             return (
@@ -28,6 +28,7 @@ export default function Certifications() {
                 border: "1px solid var(--border)", padding: "24px",
                 position: "relative", overflow: "hidden",
                 transition: "border-color 0.22s, transform 0.22s", cursor: "default",
+                flex: "0 1 calc(33.333% - 9.333px)",
               }}
               whileHover={{ y: -3, borderColor: "rgba(200,149,90,0.25)" }}
             >
@@ -50,6 +51,11 @@ export default function Certifications() {
           })}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) { .certs-grid > * { flex-basis: calc(50% - 7px) !important; } }
+        @media (max-width: 540px) { .certs-grid > * { flex-basis: 100% !important; } }
+      `}</style>
     </section>
   );
 }

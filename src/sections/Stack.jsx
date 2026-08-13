@@ -34,6 +34,7 @@ function CategoryCard({ cat, index }) {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        flex: "0 1 calc(33.333% - 9.333px)",
       }}
     >
       <div
@@ -102,8 +103,9 @@ export default function Stack() {
 
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
             gap: 14,
           }}
           className="stack-grid"
@@ -115,8 +117,8 @@ export default function Stack() {
       </div>
 
       <style>{`
-        @media (max-width: 900px) { .stack-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 540px) { .stack-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 900px) { .stack-grid > * { flex-basis: calc(50% - 7px) !important; } }
+        @media (max-width: 540px) { .stack-grid > * { flex-basis: 100% !important; } }
       `}</style>
     </section>
   );
